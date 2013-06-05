@@ -12,7 +12,7 @@ var socketio = require( 'socket.io' ),
     io = socketioWildcard( socketio ).listen( 8000 );
 
 io.sockets.on( 'connection', function onConnection ( socket ) {
-  socket.on( '*', function ( eventData, eventName ) {
+  socket.on( '*', function onWildcard ( eventData, eventName ) {
     console.log( 'eventName', eventName );
     console.log( 'eventData', eventData );
   } );
