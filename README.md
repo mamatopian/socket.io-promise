@@ -9,7 +9,7 @@ Examples
 ```js
 var socketio = require( 'socket.io' ),
     socketioWildcard = require( 'socket.io-wildcard' ),
-    io = socketioWildcard( socketio ).listen( 80 );
+    io = socketioWildcard( socketio ).listen( 8000 );
 
 io.sockets.on( 'connection', function onConnection ( socket ) {
   socket.on( '*', function ( eventData, eventName ) {
