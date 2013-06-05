@@ -1,0 +1,27 @@
+{
+  "name": "socket.io-wildcard",
+  "version": "0.0.1",
+  "description": "Extends socket.io with a wildcard event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lmjabreu/socket.io-wildcard.git"
+  },
+  "keywords": [
+    "socket.io",
+    "wildcard",
+    "catch-all",
+    "websockets",
+    "firehose"
+  ],
+  "author": {
+    "name": "Luis Abreu",
+    "email": "lmjabreu@gmail.com"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "6890bfdcfd7f542076967de14d2bbe50746db5b8"
+}
