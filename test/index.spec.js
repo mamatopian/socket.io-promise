@@ -22,9 +22,8 @@ vows.describe( 'socket.io-wildcard' ).addBatch( {
       var ioServer = ioWildcard( io ).listen( PORT );
       // Bind wildcard event listener on server, emit to client as callback
       ioServer.sockets.on( 'connection', function ( socket ) {
-        socket.on( '*', function onWildcardHandler ( eventData, eventName ) {
-          if ( eventName !== 'beep' ) { return; }
-          self.callback( eventData, eventName );
+        socket.on( '*', function onWildcardHandler ( event ) {
+          self.callback( event.name, event.args );
         } );
       } );
       // Connect client
@@ -32,10 +31,10 @@ vows.describe( 'socket.io-wildcard' ).addBatch( {
       // Emit event from client
       ioClientSocket.emit( 'beep', 'boop' );
     },
-    'wildcard should catch it': function testWildcard ( eventData, eventName ) {
+    'wildcard should catch it': function testWildcard ( eventName, eventArgs ) {
       // Check if handler contains the message broadcasted above
       assert.equal( eventName, 'beep' );
-      assert.equal( eventData, 'boop' );
+      assert.equal( eventArgs[ 0 ], 'boop' );
     }
   }
 } )[ 'export' ]( module );

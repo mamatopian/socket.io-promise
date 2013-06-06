@@ -6,16 +6,12 @@ module.exports = function ( socketio ) {
       // BEGIN: Wildcard patch
       packet2 = JSON.parse( JSON.stringify( packet ) );
       packet2.name = '*';
-      if ( packet2.args instanceof Array ) {
-        packet2.args.push( packet.name );
-      } else {
-        packet2.args = [ packet2.args, packet.name ];
-      }
- 
+      packet2.args = { name: packet.name, args: packet2.args };
+
       this.namespaces[ packet.endpoint ].handlePacket( id, packet2 );
       // END: Wildcard patch
     }
   };
- 
+
   return socketio;
 };

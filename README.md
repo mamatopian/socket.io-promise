@@ -12,11 +12,11 @@ var socketio = require( 'socket.io' ),
     io = socketioWildcard( socketio ).listen( 8000 );
 
 io.sockets.on( 'connection', function onConnection ( socket ) {
-  socket.on( '*', function onWildcard ( eventData, eventName ) {
-    console.log( 'eventName', eventName );
-    console.log( 'eventData', eventData );
+  socket.on( '*', function onWildcard ( event ) {
+    // > { name: 'cake', args: [ { 'is a lie': true }, 'another argument' ] }
+    console.log( event );
   } );
 
-  socket.emit( 'cake', { 'is a lie': true } );
+  socket.emit( 'cake', { 'is a lie': true }, 'another argument' );
 } );
 ```
