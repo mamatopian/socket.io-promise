@@ -1,4 +1,4 @@
-socket.io-wildcard [![build status](https://secure.travis-ci.org/lmjabreu/socket.io-wildcard.png)](http://travis-ci.org/lmjabreu/socket.io-wildcard)
+socket.io-wildcard [![build status](https://secure.travis-ci.org/lmjabreu/socket.io-wildcard.png)](http://travis-ci.org/lmjabreu/socket.io-wildcard) [![devDependency Status](https://david-dm.org/lmjabreu/socket.io-wildcard/dev-status.png)](https://david-dm.org/lmjabreu/socket.io-wildcard#info=devDependencies)
 ==================
 
 Extends socket.io with a wildcard event.
