@@ -6,7 +6,7 @@ module.exports = function ( socketio ) {
       // BEGIN: Wildcard patch
       packet2 = JSON.parse( JSON.stringify( packet ) );
       packet2.name = '*';
-      packet2.args = { name: packet.name, args: packet2.args };
+      packet2.args = { name: packet.name, args: packet2.args, id: packet2.id };
 
       this.namespaces[ packet.endpoint ].handlePacket( id, packet2 );
       // END: Wildcard patch
