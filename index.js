@@ -4,11 +4,13 @@ module.exports = function ( socketio ) {
     if ( this.namespaces[ packet.endpoint ] ) {
       this.namespaces[ packet.endpoint ].handlePacket( id, packet );
       // BEGIN: Wildcard patch
-      packet2 = JSON.parse( JSON.stringify( packet ) );
-      packet2.name = '*';
-      packet2.args = { name: packet.name, args: packet2.args, id: packet2.id };
+      if (packet.type !== 'ack') {
+        packet2 = JSON.parse( JSON.stringify( packet ) );
+        packet2.name = '*';
+        packet2.args = { name: packet.name, args: packet2.args, id: packet2.id };
 
-      this.namespaces[ packet.endpoint ].handlePacket( id, packet2 );
+        this.namespaces[ packet.endpoint ].handlePacket( id, packet2 );
+      }
       // END: Wildcard patch
     }
   };
