@@ -1,19 +1,14 @@
-module.exports = function ( socketio ) {
-  // Add support for wilcard event
-  socketio.Manager.prototype.onClientMessage = function onClientMessage ( id, packet ) {
-    if ( this.namespaces[ packet.endpoint ] ) {
-      this.namespaces[ packet.endpoint ].handlePacket( id, packet );
-      // BEGIN: Wildcard patch
-      if (packet.type !== 'ack') {
-        packet2 = JSON.parse( JSON.stringify( packet ) );
-        packet2.name = '*';
-        packet2.args = { name: packet.name, args: packet2.args, id: packet2.id };
+module.exports = function (Socket) {
 
-        this.namespaces[ packet.endpoint ].handlePacket( id, packet2 );
-      }
-      // END: Wildcard patch
-    }
-  };
+    Socket.prototype.givePromise = function(event, callback, timeout) {
+        var self = this;
 
-  return socketio;
+        var timedOutOrEventEmitted = function(data){
+            self.removeListener(event, timedOutOrEventEmitted);
+            callback(data, self);
+            this.promiseDelay = clearTimeout(self.promiseDelay);
+        };
+        this.on(event, timedOutOrEventEmitted);
+        this.promiseDelay = setTimeout(timedOutOrEventEmitted, timeout);
+    };
 };
