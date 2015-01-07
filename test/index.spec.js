@@ -23,7 +23,7 @@ vows.describe( 'socket.io-promise' ).addBatch( {
 
       // Bind wildcard event listener on server, emit to client as callback
       ioServer.sockets.on( 'connection', function ( socket ) {
-          socket.givePromise('event', function(){
+          socket.giveme('event', function(){
               console.log( 'promised');
           });
         socket.on( '*', function onWildcardHandler ( event ) {
